@@ -7,14 +7,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <MazimoEditor onChange={this.props.onChange} />
+          <MazimoEditor onChange={this.props.onChange} initialContent={this.props.initialContent} />
       </div>
     );
   }
 }
 
 App.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  initialContent: PropTypes.string
 }
 
 export default App;

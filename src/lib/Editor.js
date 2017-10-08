@@ -1,83 +1,13 @@
 import { Editor } from 'slate-react'
-import { State } from 'slate'
-import { Mark } from 'slate'
+import MarkdownPlugin from 'slate-markdown';
+import Plain from 'slate-plain-serializer'
 
-import Prism from 'prismjs'
 import React from 'react'
 import PropTypes from 'prop-types'
 
 import Toolbar from './Toolbar'
 
-const initialState = {
-  document: {
-    nodes: [
-      {
-        kind: 'block',
-        type: 'paragraph',
-        nodes: [
-          {
-            kind: 'text',
-            ranges: [
-              {
-                text: 'Incepe aici..'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-
-/**
- * Add the markdown syntax to Prism.
- */
-
-// eslint-disable-next-line
-Prism.languages.markdown=Prism.languages.extend("markup",{}),Prism.languages.insertBefore("markdown","prolog",{blockquote:{pattern:/^>(?:[\t ]*>)*/m,alias:"punctuation"},code:[{pattern:/^(?: {4}|\t).+/m,alias:"keyword"},{pattern:/``.+?``|`[^`\n]+`/,alias:"keyword"}],title:[{pattern:/\w+.*(?:\r?\n|\r)(?:==+|--+)/,alias:"important",inside:{punctuation:/==+$|--+$/}},{pattern:/(^\s*)#+.+/m,lookbehind:!0,alias:"important",inside:{punctuation:/^#+|#+$/}}],hr:{pattern:/(^\s*)([*-])([\t ]*\2){2,}(?=\s*$)/m,lookbehind:!0,alias:"punctuation"},list:{pattern:/(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,lookbehind:!0,alias:"punctuation"},"url-reference":{pattern:/!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,inside:{variable:{pattern:/^(!?\[)[^\]]+/,lookbehind:!0},string:/(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,punctuation:/^[\[\]!:]|[<>]/},alias:"url"},bold:{pattern:/(^|[^\\])(\*\*|__)(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,lookbehind:!0,inside:{punctuation:/^\*\*|^__|\*\*$|__$/}},italic:{pattern:/(^|[^\\])([*_])(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,lookbehind:!0,inside:{punctuation:/^[*_]|[*_]$/}},url:{pattern:/!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[[^\]\n]*\])/,inside:{variable:{pattern:/(!?\[)[^\]]+(?=\]$)/,lookbehind:!0},string:{pattern:/"(?:\\.|[^"\\])*"(?=\)$)/}}}}),Prism.languages.markdown.bold.inside.url=Prism.util.clone(Prism.languages.markdown.url),Prism.languages.markdown.italic.inside.url=Prism.util.clone(Prism.languages.markdown.url),Prism.languages.markdown.bold.inside.italic=Prism.util.clone(Prism.languages.markdown.italic),Prism.languages.markdown.italic.inside.bold=Prism.util.clone(Prism.languages.markdown.bold);
-
-/**
- * Define a decorator for markdown styles.
- *
- * @param {Text} text
- * @param {Block} block
- */
-
-function markdownDecorator(text, block) {
-  const characters = text.characters.asMutable()
-  const language = 'markdown'
-  const string = text.text
-  const grammar = Prism.languages[language]
-  const tokens = Prism.tokenize(string, grammar)
-  addMarks(characters, tokens, 0)
-  return characters.asImmutable()
-}
-
-function addMarks(characters, tokens, offset) {
-  for (const token of tokens) {
-    if (typeof token === 'string') {
-      offset += token.length
-      continue
-    }
-
-    const { content, length, type } = token
-    const mark = Mark.create({ type })
-
-    for (let i = offset; i < offset + length; i++) {
-      let char = characters.get(i)
-      let { marks } = char
-      marks = marks.add(mark)
-      char = char.set('marks', marks)
-      characters.set(i, char)
-    }
-
-    if (Array.isArray(content)) {
-      addMarks(characters, content, offset)
-    }
-
-    offset += length
-  }
-}
+const markdown = MarkdownPlugin();
 
 /**
  * Define a schema.
@@ -100,36 +30,16 @@ const schema = {
   marks: {
     heading1: (props) => <h1>{props.children}</h1>,
     heading2: (props) => <h2>{props.children}</h2>,
-    'title': {
-      fontWeight: 'bold',
-      fontSize: '20px',
-      margin: '20px 0 10px 0',
-      display: 'inline-block'
-    },
     bold: (props) => <b>{props.children}</b>,
     italic: (props) => <i>{props.children}</i>,
-    'punctuation': {
-      opacity: 0.2
-    },
     code: (props) => <code>{props.children}</code>,
-    'list': {
-      paddingLeft: '10px',
-      lineHeight: '10px',
-      fontSize: '20px'
-    },
     'hr': {
-      borderBottom: '2px solid #000',
+      borderBottom: '1px solid #000',
       display: 'block',
       opacity: 0.2
     },
     underlined: (props) => <u>{props.children}</u>
-  },
-  rules: [
-    {
-      match: () => true,
-      decorate: markdownDecorator,
-    }
-  ]
+  }
 }
 
 /**
@@ -146,8 +56,12 @@ class MazimoEditor extends React.Component {
    * @type {Object}
    */
 
-  state = {
-    document: State.fromJSON(initialState)
+  constructor(props) {
+    super(props)
+
+    this.setState({
+      document: Plain.deserialize(props.initialContent || '')
+    })
   }
 
   /**
@@ -163,12 +77,6 @@ class MazimoEditor extends React.Component {
       case '-':
       case '+': return 'list-item'
       case '>': return 'block-quote'
-      case '#': return 'heading1'
-      case '##': return 'heading2'
-      case '###': return 'heading-three'
-      case '####': return 'heading-four'
-      case '#####': return 'heading-five'
-      case '######': return 'heading-six'
       default: return null
     }
   }
@@ -188,6 +96,7 @@ class MazimoEditor extends React.Component {
           <Editor
             schema={schema}
             state={this.state.document}
+            plugins={[ markdown ]}
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
           />
@@ -206,7 +115,9 @@ class MazimoEditor extends React.Component {
   onChange = ({ state }) => {
     // This send document only if a change in text was made
     if (state.document !== this.state.document.document) {
-      this.props.onChange({ state })
+      // Send plain text back, since it's the editor job
+      const text = Plain.serialize(state)
+      this.props.onChange(text)
     }
     
     this.setState({ document: state })
