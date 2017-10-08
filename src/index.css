@@ -1,0 +1,304 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  background: #fbfbfb;
+}
+
+.App {
+  width: 80%;
+  margin: 20px auto 200px;
+}
+
+.editor {
+  padding: 5px 30px 30px 30px;
+  background: #fff;
+  font-family: "Times New Roman", Times, serif;
+  box-shadow: 0 0 14px -10px;
+  border-radius: 4px;
+}
+
+h1,h2 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 8px;
+  margin-left: -3px;
+  margin-top: 40px;
+  padding-top: 0;
+}
+
+h3 {
+  font-family: "jaf-bernino-sans", "Open Sans", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 32px;
+  margin-left: -1.8px;
+  line-height: 1.2;
+  margin-top: 40px;
+  margin-bottom: 4px;
+}
+
+h4 {
+  font-family: "jaf-bernino-sans", "Open Sans", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 24px;
+  margin-left: -1.5px;
+  line-height: 1.2;
+  color: rgba(0, 0, 0, 0.44);
+  margin-top: 40px;
+  margin-bottom: 2px;
+}
+
+blockquote {
+  font-family: "freight-text-pro", "Merriweather", Georgia, Cambria, "Times New Roman", Times, serif;
+  border-left: 3px solid rgba(0, 0, 0, 0.8);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.01rem;
+  margin-left: -30px;
+  padding-bottom: 3px;
+  padding-left: 30px;
+}
+
+.editor-container {
+  font-family: "Times New Roman", Times, serif;
+  letter-spacing: 0.01rem;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+.menu {
+  
+  position: absolute;
+  visibility: hidden;
+  z-index: 1000;
+  -webkit-transition: none;
+  transition: none;
+  display: none;
+  top: 0;
+  left: 0;
+  display:block;
+  white-space: nowrap;
+
+  height: 42px;
+  background: #333333;
+  color: #FFFFFF;
+
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px -2px #222;
+}
+
+.menu::before,
+.menu::after {
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  left: 50%;
+  pointer-events: none;
+  border: 8px solid transparent;
+  margin-left: -4px;
+}
+
+.menu::after {
+  border-top-color: #333333;
+  bottom: -15px;
+}
+
+
+.menu--active {
+  display: inline-block;
+  visibility: visible;
+  -webkit-animation: pop-upwards 180ms forwards linear;
+  animation: pop-upwards 180ms forwards linear;
+}
+
+.menu--linkmode .menu-buttons {
+  visibility: hidden;
+}
+
+.menu--linkmode .dante-menu-linkinput {
+  display: block;
+}
+
+.menu--linkmode .menu-input {
+  -webkit-animation: pop-upwards 180ms forwards linear;
+          animation: pop-upwards 180ms forwards linear;
+}
+
+
+.menu-buttons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.menu-divider {
+  width: 1px;
+  height: 24px;
+  margin: 9px 2px;
+  background: rgba(32, 32, 32, 0.2);
+  display: inline-block;
+  overflow: hidden;
+  cursor: default;
+  line-height: 42px;
+  -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.menu-button {
+  min-width: 20px;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 42px;
+  -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.menu-button:hover {
+
+}
+.menu-button.active {
+  color: #5BD974;
+}
+
+.menu-button:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-left: 18px;
+}
+
+.menu-button:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding-right: 18px;
+}
+
+.dante-menu-button--disabled {
+  -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+          user-select: none !important;
+          opacity: .3;
+}
+
+
+.menu-linkinput {
+
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.menu-linkinput .menu-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+.menu-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0);
+  width: 100%;
+  padding: 13px 40px 13px 10px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  appearance: none;
+  text-align: left;
+  font-family: 'comic-sans';
+  letter-spacing: 0.01rem;
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" on;
+}
+
+@keyframes pop-upward {
+  0% {
+    -webkit-transform: matrix(.97, 0, 0, 1, 0, 12);
+            transform: matrix(.97, 0, 0, 1, 0, 12);
+    opacity: 0;
+  }
+  20% {
+    -webkit-transform: matrix(.99, 0, 0, 1, 0, 2);
+            transform: matrix(.99, 0, 0, 1, 0, 2);
+    opacity: .7;
+  }
+  40% {
+    -webkit-transform: matrix(1, 0, 0, 1, 0, -1);
+            transform: matrix(1, 0, 0, 1, 0, -1);
+    opacity: 1;
+  }
+  70% {
+    -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+            transform: matrix(1, 0, 0, 1, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+            transform: matrix(1, 0, 0, 1, 0, 0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes pop-upwards {
+  0% {
+    -webkit-transform: matrix(.97, 0, 0, 1, 0, 12);
+            transform: matrix(.97, 0, 0, 1, 0, 12);
+    opacity: 0;
+  }
+  20% {
+    -webkit-transform: matrix(.99, 0, 0, 1, 0, 2);
+            transform: matrix(.99, 0, 0, 1, 0, 2);
+    opacity: .7;
+  }
+  40% {
+    -webkit-transform: matrix(1, 0, 0, 1, 0, -1);
+            transform: matrix(1, 0, 0, 1, 0, -1);
+    opacity: 1;
+  }
+  70% {
+    -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+            transform: matrix(1, 0, 0, 1, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+            transform: matrix(1, 0, 0, 1, 0, 0);
+    opacity: 1;
+  }
+}

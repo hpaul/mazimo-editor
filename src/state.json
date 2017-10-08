@@ -1,0 +1,354 @@
+{
+  "document": {
+    "nodes":[
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"heading1",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":"Noul editor este mai usor de folosit"
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"heading-three",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":"Are mai multe nivele de atent si integrate scurtaturi pentru markdown"
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"paragraph",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":""
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"paragraph",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":"Mini toolbarul ce se deschide atunci cand textul este selectat, este pentru cei neinitiati cu limbajul `markdown`. Momentan contine doar elementele de baza, precum "
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+                        {
+                            "data":{
+
+                            },
+                            "kind":"mark",
+                            "type":"bold"
+                        }
+                      ],
+                      "text":"bold, "
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+                        {
+                            "data":{
+
+                            },
+                            "kind":"mark",
+                            "type":"italic"
+                        }
+                      ],
+                      "text":"italic, "
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+                        {
+                            "data":{
+
+                            },
+                            "kind":"mark",
+                            "type":"underlined"
+                        }
+                      ],
+                      "text":"underline"
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":" si "
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+                        {
+                            "data":{
+
+                            },
+                            "kind":"mark",
+                            "type":"code"
+                        }
+                      ],
+                      "text":"mini citat"
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":". Cu timpul planuiesc sa adaug si alte elemente,  aliniere, imagini, linkuri si formule ("
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+                        {
+                            "data":{
+
+                            },
+                            "kind":"mark",
+                            "type":"italic"
+                        }
+                      ],
+                      "text":"MaTeX"
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":")."
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"paragraph",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":""
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"paragraph",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":"Markdown este de facto pentru documentele din mediul online, existand mai multe *formate*, cel initial contine doar formule de formatare pentru elementele de **baza**. Printre caracteristicile proprii ale editorului ce vreau sa il construiesc sunt citarile, ce trebuie sa aibe referinte in text la o lista de subsol ce contine toate linkurile din document (ex. [^1])."
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"block-quote",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":"Pot fi adaugate si citari identate in document, trebuie doar sa incepit textul cu `>` si un spatiu, modul citat va fi activat automat"
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"paragraph",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":"In toolbar este inclus doar un singur nivel de identare, dar pot fi incluse toate 6 in document. Trebuie sa incepi randul nou cu numarul de asteriscuri `("
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+                        {
+                            "data":{
+
+                            },
+                            "kind":"mark",
+                            "type":"bold"
+                        }
+                      ],
+                      "text":"#"
+                  },
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":")` spefic nivelului de identare."
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"heading-three",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":"Iar randul se transforma automat in antet"
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"paragraph",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":""
+                  }
+                ]
+            }
+          ]
+      },
+      {
+          "data":{
+
+          },
+          "kind":"block",
+          "isVoid":false,
+          "type":"paragraph",
+          "nodes":[
+            {
+                "kind":"text",
+                "ranges":[
+                  {
+                      "kind":"range",
+                      "marks":[
+
+                      ],
+                      "text":"Mai trebuie lucrat la experienta de scris, dar per total, SlateJS ofera extensibilitate completa si usurinta in a adauga elemente si a customiza modul de scriere in directia in care vrea programatorul. Din aceasta privinta, eu trebuie doar sa ma concentrez pe intrebarile `de ce` si `cum`, fara sa imi stea in cale platforma prin care implemenez aceste __*features*__."
+                  }
+                ]
+            }
+          ]
+      }
+    ]
+  }
+}
