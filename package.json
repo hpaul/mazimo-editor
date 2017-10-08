@@ -7,7 +7,9 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1"
+    "babel-preset-stage-0": "^6.24.1",
+    "preact": "^8.2.5",
+    "preact-compat": "^3.17.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
@@ -58,7 +60,5 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "preact": "^8.2.5",
-    "preact-compat": "^3.17.0"
   }
 }
