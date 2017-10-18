@@ -83,7 +83,7 @@ class Toolbar extends React.Component {
     const onMouseDown = e => this.onClickBlock(e, type)
 
     return (
-      <li className={`menu-button ${isActive ? ' active' : ''}`} onMouseDown={onMouseDown}>
+      <li className={`editor-menu-button ${isActive ? ' active' : ''}`} onMouseDown={onMouseDown}>
         <span className={`fa fa-${icon}`} />
       </li>
     )
@@ -127,7 +127,7 @@ class Toolbar extends React.Component {
     const onMouseDown = e => this.onClickMark(e, type)
 
     return (
-      <li className={`menu-button ${isActive ? ' active' : ''}`} onMouseDown={onMouseDown}>
+      <li className={`editor-menu-button ${isActive ? ' active' : ''}`} onMouseDown={onMouseDown}>
         <span className={`fa fa-${icon}`} />
       </li>
     )
@@ -141,11 +141,11 @@ class Toolbar extends React.Component {
     const { menu } = this.state
     const state = this.props.document
     if (!menu) return
-    const menuContainer = menu.querySelector('.menu')
+    const menuContainer = menu.querySelector('.editor-menu')
     if (!menuContainer) return
 
     if (state.isBlurred || state.isEmpty) {
-      menuContainer.classList.remove('menu--active')
+      menuContainer.classList.remove('editor-menu--active')
       menuContainer.removeAttribute('style')
       return
     }
@@ -154,7 +154,7 @@ class Toolbar extends React.Component {
     const range = selection.getRangeAt(0)
     const rect = range.getBoundingClientRect()
 
-    menuContainer.classList.add('menu--active')
+    menuContainer.classList.add('editor-menu--active')
     menuContainer.style.top = `${rect.top + window.scrollY - menuContainer.offsetHeight - 8}px`
     menuContainer.style.left = `${rect.left + window.scrollX - menuContainer.offsetWidth / 2 + rect.width / 2}px`
 
@@ -163,14 +163,14 @@ class Toolbar extends React.Component {
   render() {
     return (
       <Portal isOpened onOpen={this.onOpen}>
-        <div className="menu">
-          <div className="menu-linkinput">
-            <input className="menu-input" placeholder="Paste or type a link" />
-            <div className="menu-button"></div>
+        <div className="editor-menu">
+          <div className="editor-menu-linkinput">
+            <input className="editor-menu-input" placeholder="Paste or type a link" />
+            <div className="editor-menu-button"></div>
           </div>
-          <ul className="menu-buttons">
+          <ul className="editor-menu-buttons">
             {this.renderBlockButton('heading2', 'header')}
-            <li className="menu-divider"></li>
+            <li className="editor-menu-divider"></li>
             {this.renderMarkButton('bold', 'bold')}
             {this.renderMarkButton('italic', 'italic')}
             {this.renderMarkButton('underlined', 'underline')}
